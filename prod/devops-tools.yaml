@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: devops-tools
+  namespace: devops-tools
+spec:
+  generators:
+  - list:
+      elements:
+      - name: argocd
+      - name: renovate
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/home-kops/k8s-homelab.git
+        targetRevision: main
+        path: './devops-tools/{{name}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: devops-tools
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        managedNamespaceMetadata:
+          labels:
+            pod-security.kubernetes.io/enforce: baseline
+            pod-security.kubernetes.io/enforce-version: latest
+            pod-security.kubernetes.io/audit: restricted
+            pod-security.kubernetes.io/audit-version: latest
+            istio.io/dataplane-mode: ambient
+            istio.io/use-waypoint: cluster-waypoint
+            istio.io/use-waypoint-namespace: network
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true

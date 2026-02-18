@@ -1,0 +1,35 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: network
+  namespace: devops-tools
+spec:
+  generators:
+    - list:
+        elements:
+          - name: certmanager
+          - name: metallb
+          - name: istio
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/home-kops/k8s-homelab.git
+        targetRevision: main
+        path: './network/{{name}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: network
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        managedNamespaceMetadata:
+          labels:
+            pod-security.kubernetes.io/audit: restricted
+            pod-security.kubernetes.io/audit-version: latest
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true

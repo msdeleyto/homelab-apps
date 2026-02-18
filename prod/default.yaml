@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: default
+  namespace: devops-tools
+spec:
+  generators:
+    - list:
+        elements:
+          - name: nfs-sc
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/home-kops/k8s-homelab.git
+        targetRevision: main
+        path: './default/{{name}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        managedNamespaceMetadata:
+          labels:
+            pod-security.kubernetes.io/enforce: baseline
+            pod-security.kubernetes.io/enforce-version: latest
+            pod-security.kubernetes.io/audit: restricted
+            pod-security.kubernetes.io/audit-version: latest
+            istio.io/dataplane-mode: ambient
+        syncOptions:
+          - CreateNamespace=true
+          - ServerSideApply=true

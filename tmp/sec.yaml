@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: sec
+  namespace: devops-tools
+spec:
+  generators:
+    - list:
+        elements:
+          - name: falco
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/home-kops/k8s-homelab.git
+        targetRevision: main
+        path: './sec/{{name}}'
+        plugin:
+          name: argocd-vault-plugin-kustomize
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: sec
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        managedNamespaceMetadata:
+          labels:
+            pod-security.kubernetes.io/audit: restricted
+            pod-security.kubernetes.io/audit-version: latest
+        syncOptions:
+          - CreateNamespace=true
