@@ -14,7 +14,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/home-kops/k8s-homelab.git
+        repoURL: https://github.com/msdeleyto/homelab-apps.git
         targetRevision: main
         path: './sec/{{name}}'
         plugin:
