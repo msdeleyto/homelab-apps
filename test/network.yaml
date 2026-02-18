@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/msdeleyto/homelab-apps.git
+        repoURL: https://github.com/msdeleyto/homelab-manifests.git
         targetRevision: main
         path: './network/{{name}}'
       destination:
