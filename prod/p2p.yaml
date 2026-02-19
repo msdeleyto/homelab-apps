@@ -8,7 +8,7 @@ spec:
     - list:
         elements:
           - name: jackett
-          - name: qbittorrent
+          # - name: qbittorrent
           # - name: slskd
   template:
     metadata:
