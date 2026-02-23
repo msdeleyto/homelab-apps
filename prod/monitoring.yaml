@@ -38,7 +38,7 @@ spec:
             pod-security.kubernetes.io/audit-version: latest
             istio.io/dataplane-mode: ambient
             istio.io/use-waypoint: cluster-waypoint
-            istio.io/use-waypoint-namespace: network
+            # istio.io/use-waypoint-namespace: network
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true

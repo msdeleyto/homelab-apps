@@ -31,7 +31,7 @@ spec:
             pod-security.kubernetes.io/enforce-version: latest
             pod-security.kubernetes.io/audit: restricted
             pod-security.kubernetes.io/audit-version: latest
-            istio.io/dataplane-mode: ambient
+            # istio.io/dataplane-mode: ambient
             istio.io/use-waypoint: cluster-waypoint
             istio.io/use-waypoint-namespace: network
         syncOptions:
