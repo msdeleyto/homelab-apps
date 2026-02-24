@@ -9,7 +9,7 @@ spec:
         elements:
           - name: certmanager
           - name: cilium
-          - name: istio
+          # - name: istio
   template:
     metadata:
       name: '{{name}}'
