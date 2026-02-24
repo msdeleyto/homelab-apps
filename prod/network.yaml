@@ -8,7 +8,7 @@ spec:
     - list:
         elements:
           - name: certmanager
-          - name: metallb
+          - name: cilium
           - name: istio
   template:
     metadata:
