@@ -13,7 +13,6 @@ spec:
           - name: loki
           - name: prometheus
           - name: tempo
-          - name: kiali
   template:
     metadata:
       name: '{{name}}'
