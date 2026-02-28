@@ -4,7 +4,7 @@ metadata:
   name: vault
   namespace: devops-tools
   annotations:
-    argocd.argoproj.io/sync-wave: "-3"
+    argocd.argoproj.io/sync-wave: "-2"
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -26,27 +26,4 @@ spec:
         pod-security.kubernetes.io/enforce-version: latest
     syncOptions:
     - CreateNamespace=true
-    - ServerSideApply=true
----
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: unsealer
-  namespace: devops-tools
-  annotations:
-    argocd.argoproj.io/sync-wave: "-2"
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: vault
-  project: default
-  source:
-    path: ./vault/unsealer
-    repoURL: https://github.com/msdeleyto/homelab-manifests.git
-    targetRevision: main
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
     - ServerSideApply=true
