@@ -9,7 +9,7 @@ spec:
         elements:
           - name: jackett
           - name: qbittorrent
-          # - name: slskd
+          - name: slskd
   template:
     metadata:
       name: '{{name}}'
