@@ -7,7 +7,7 @@ spec:
   generators:
     - list:
         elements:
-          - name: falco
+          - name: dex
   template:
     metadata:
       name: '{{name}}'
@@ -17,8 +17,6 @@ spec:
         repoURL: https://github.com/msdeleyto/homelab-manifests.git
         targetRevision: main
         path: './sec/{{name}}'
-        plugin:
-          name: argocd-vault-plugin-kustomize
       destination:
         server: https://kubernetes.default.svc
         namespace: sec
@@ -32,3 +30,4 @@ spec:
             pod-security.kubernetes.io/audit-version: latest
         syncOptions:
           - CreateNamespace=true
+          - ServerSideApply=true
