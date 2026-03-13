@@ -9,6 +9,7 @@ spec:
         elements:
           - name: jellyfin
           - name: cwa
+          - name: hometube
   template:
     metadata:
       name: '{{name}}'
