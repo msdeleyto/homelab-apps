@@ -8,6 +8,7 @@ spec:
     - list:
         elements:
           - name: keycloak
+          - name: oauth2-proxy
   template:
     metadata:
       name: '{{name}}'
