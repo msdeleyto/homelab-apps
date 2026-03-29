@@ -10,7 +10,6 @@ spec:
           - name: jellyfin
           - name: cwa
           - name: hometube
-          - name: shelfmark
           - name: yubal
   template:
     metadata:
