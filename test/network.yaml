@@ -7,10 +7,9 @@ spec:
   generators:
     - list:
         elements:
-          - name: cilium
           - name: certmanager
-          - name: metallb
-          - name: istio
+          - name: cilium
+          - name: envoy
   template:
     metadata:
       name: '{{name}}'
