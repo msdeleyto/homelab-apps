@@ -13,7 +13,7 @@ spec:
           - name: loki
           - name: prometheus
           - name: tempo
-          - name: timescale
+          # - name: timescale
   template:
     metadata:
       name: '{{name}}'
