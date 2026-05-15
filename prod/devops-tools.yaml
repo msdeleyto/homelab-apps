@@ -8,7 +8,7 @@ spec:
   - list:
       elements:
       - name: argocd
-      - name: renovate
+      # - name: renovate
   template:
     metadata:
       name: '{{name}}'
