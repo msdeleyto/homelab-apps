@@ -8,6 +8,7 @@ spec:
   - list:
       elements:
       - name: cnpg
+      - name: litellm
   template:
     metadata:
       name: '{{name}}'
